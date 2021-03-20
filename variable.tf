@@ -3,11 +3,11 @@ variable "centos" {
 }
 
 variable "centos_instance_type" {
-   default = "t2.micro"
+   default = "t3a.micro"
 }
 
 variable "key" {
-   default = "test"
+   default = "training"
 }
 
 variable "ubuntu" {
@@ -15,13 +15,13 @@ variable "ubuntu" {
 }
 
 variable "ubuntu_instance_type" {
-   default = "t2.micro"
+   default = "t3a.micro"
 }
 variable "windows" {
    default = "ami-0e232a0dc0468fb1f"
 }
 
 variable "windwos_instance_type" {
-   default = "t2.micro"
+   default = "t3a.micro"
 }
 
