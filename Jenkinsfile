@@ -1,9 +1,5 @@
   pipeline {
-    agent {
-      node {
-        label "master"
-      } 
-    }
+    agent any
 	tools {
 	terraform 'terraform'
     }
@@ -21,7 +17,6 @@
         if ("${params.choice}" == "apply") {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_access_key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 		sh '''
-		cd /var/lib/jenkins/terraform/aws-ec2instance-provisioning
 		export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
 		export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
 		export AWS_DEFAULT_REGION="us-east-1"
@@ -48,8 +43,7 @@
       stage('TF Apply') {
         steps {
         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws_access_key', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
-		sh '''		cd /var/lib/jenkins/terraform/aws-ec2instance-provisioning
-		export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
+		sh '''	export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
 		export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
 		export AWS_DEFAULT_REGION="us-east-1"
         terraform $choice -auto-approve'''
