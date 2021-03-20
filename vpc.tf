@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
-    Name = "VPC"
+    Name = "TrainingVPC"
   }
 }
 resource "aws_subnet" "public_subnet" {
@@ -12,7 +12,7 @@ resource "aws_subnet" "public_subnet" {
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
   tags = {
-    Name = "zippyops_publicsubnet"
+    Name = "training_publicsubnet"
   }
 }
 
